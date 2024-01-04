@@ -19,4 +19,9 @@ namespace OrderApp.Models
         public string eng_name { get; set; }
         public string esp_name { get; set; }
     }
+
+    public class ItemsCollection
+    {
+        public List<Item> Items { get; set; }
+    }
 }
