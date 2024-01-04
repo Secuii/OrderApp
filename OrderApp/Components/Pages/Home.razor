@@ -6,4 +6,23 @@
 }
 else
 {
+    <table class="table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>eng_name. (C)</th>
+                <th>esp_name. (F)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in @items.Items)
+            {
+                <tr>
+                    <td>@forecast.id</td>
+                    <td>@forecast.eng_name</td>
+                    <td>@forecast.esp_name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

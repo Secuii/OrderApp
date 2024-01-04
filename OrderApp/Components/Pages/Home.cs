@@ -13,7 +13,7 @@ namespace OrderApp.Components.Pages
 {
     partial class Home
     {
-        public ItemsCollection items;
+        public ItemsCollection items { get; set; }
         protected override async Task OnInitializedAsync()
         {
             await GetItem();
@@ -23,13 +23,11 @@ namespace OrderApp.Components.Pages
         {
             string url = "https://localhost:7003/Order";
 
-            WebRequest request = WebRequest.Create(url);
-            request.Method = "GET";
+            var myClient = new HttpClient(new HttpClientHandler() { UseDefaultCredentials = true });
+            var response = await myClient.GetAsync(url);
+            var streamResponse = await response.Content.ReadAsStreamAsync();
 
-            using WebResponse webResponse = request.GetResponse();
-            using Stream webStream = webResponse.GetResponseStream();
-
-            using var reader = new StreamReader(webStream);
+            using var reader = new StreamReader(streamResponse);
             string data = reader.ReadToEnd();
 
 #pragma warning disable CS8601 // Possible null reference assignment.
